@@ -29,7 +29,7 @@ function App() {
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [API_URL]);
 
   useEffect(() => {
     loadData();
