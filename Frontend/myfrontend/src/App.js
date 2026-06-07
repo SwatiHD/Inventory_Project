@@ -3,6 +3,7 @@ import axios from "axios";
 import "./App.css";
 
 function App() {
+  const API_URL = process.env.REACT_APP_API_URL;
   const [types, setTypes] = useState([]);
   const [items, setItems] = useState([]);
 
@@ -20,9 +21,10 @@ function App() {
 
   const loadData = async () => {
     try {
-      const typesRes = await axios.get("http://localhost:5000/api/item-types");
-
-      const itemsRes = await axios.get("http://localhost:5000/api/items");
+      //  const typesRes = await axios.get("http://localhost:5000/api/item-types");
+      const typesRes = await axios.get(`${API_URL}/api/item-types`);
+      // const itemsRes = await axios.get("http://localhost:5000/api/items");
+      const itemsRes = await axios.get(`${API_URL}/api/items`);
 
       setTypes(typesRes.data);
       setItems(itemsRes.data);
@@ -65,7 +67,12 @@ function App() {
 
     try {
       if (editId) {
-        await axios.put(`http://localhost:5000/api/items/${editId}`, {
+        // await axios.put(`http://localhost:5000/api/items/${editId}`, {
+        //   name: formItems[0].name,
+        //   item_type_id: formItems[0].item_type_id,
+        //   stock_available: formItems[0].stock_available,
+        // });
+        await axios.put(`${API_URL}/api/items/${editId}`, {
           name: formItems[0].name,
           item_type_id: formItems[0].item_type_id,
           stock_available: formItems[0].stock_available,
@@ -73,7 +80,11 @@ function App() {
 
         alert("Item Updated Successfully");
       } else {
-        await axios.post("http://localhost:5000/api/purchase", {
+        // await axios.post("http://localhost:5000/api/purchase", {
+        //   purchase_date: purchaseDate,
+        //   items: formItems,
+        // });
+        await axios.post(`${API_URL}/api/purchase`, {
           purchase_date: purchaseDate,
           items: formItems,
         });
@@ -96,8 +107,8 @@ function App() {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/items/${id}`);
-
+      // await axios.delete(`http://localhost:5000/api/items/${id}`);
+      await axios.delete(`${API_URL}/api/items/${id}`);
       alert("Deleted Successfully");
 
       loadData();
