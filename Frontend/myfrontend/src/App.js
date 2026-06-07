@@ -19,11 +19,9 @@ function App() {
 
   const [editId, setEditId] = useState(null);
 
-  const loadData = async () => {
+  const loadData = useCallback(async () => {
     try {
-      //  const typesRes = await axios.get("http://localhost:5000/api/item-types");
       const typesRes = await axios.get(`${API_URL}/api/item-types`);
-      // const itemsRes = await axios.get("http://localhost:5000/api/items");
       const itemsRes = await axios.get(`${API_URL}/api/items`);
 
       setTypes(typesRes.data);
@@ -31,11 +29,11 @@ function App() {
     } catch (error) {
       console.log(error);
     }
-  };
+  }, []);
 
   useEffect(() => {
     loadData();
-  }, []);
+  }, [loadData]);
 
   const addItemRow = () => {
     setFormItems([
