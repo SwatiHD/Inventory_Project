@@ -22,7 +22,9 @@ function App() {
   const loadData = async () => {
     try {
       const typesRes = await axios.get(`${API_URL}/api/item-types`);
+      // const typesRes = await axios.get ("http://localhost:5000/api/items-types");
       const itemsRes = await axios.get(`${API_URL}/api/items`);
+      // const itemsRes = await axios.get ("http://localhost:5000/api/items");
 
       setTypes(typesRes.data);
       setItems(itemsRes.data);
@@ -33,7 +35,6 @@ function App() {
 
   useEffect(() => {
     loadData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const addItemRow = () => {

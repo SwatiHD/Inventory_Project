@@ -13,7 +13,7 @@ const app = express();
 const corsOptions = {
   origin: [
     "http://localhost:3000",
-    "https://inventory-project-kigv.vercel.app",
+    "https://inventory-project-kigv.vercel.app", //vercel deploy
   ],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   credentials: true,
