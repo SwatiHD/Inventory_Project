@@ -10,14 +10,17 @@ console.log("DB_USER:", process.env.DB_USER);
 console.log("DB_NAME:", process.env.DB_NAME);
 const app = express();
 
-app.use(
-  cors({
-    origin: [
-      "http://localhost:3000",
-      "https://inventory-project-fzqz.vercel.app",
-    ],
-  }),
-);
+const corsOptions = {
+  origin: [
+    "http://localhost:3000",
+    "https://inventory-project-fzqz.vercel.app",
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 app.use(express.json());
 
 app.use("/api", itemRoutes);
