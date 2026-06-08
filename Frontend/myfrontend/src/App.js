@@ -19,7 +19,7 @@ function App() {
 
   const [editId, setEditId] = useState(null);
 
-  const loadData = useCallback(async () => {
+  const loadData = async () => {
     try {
       const typesRes = await axios.get(`${API_URL}/api/item-types`);
       const itemsRes = await axios.get(`${API_URL}/api/items`);
@@ -29,11 +29,12 @@ function App() {
     } catch (error) {
       console.log(error);
     }
-  }, [API_URL]);
+  };
 
   useEffect(() => {
     loadData();
-  }, [loadData]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const addItemRow = () => {
     setFormItems([
