@@ -14,7 +14,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:3000",
-      "https://inventory-project-dgoe.vercel.app",
+      "https://inventory-project-47mt.vercel.app",
     ],
   }),
 );

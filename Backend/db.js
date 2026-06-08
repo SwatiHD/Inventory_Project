@@ -7,7 +7,9 @@ const db = mysql.createPool({
   database: process.env.DB_NAME,
   port: process.env.DB_PORT,
 });
-
+console.log("DB_HOST =", process.env.DB_HOST);
+console.log("DB_USER =", process.env.DB_USER);
+console.log("DB_NAME =", process.env.DB_NAME);
 db.getConnection((err, connection) => {
   if (err) {
     console.error("DB ERROR:", err.message);
